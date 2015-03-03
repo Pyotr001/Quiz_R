@@ -3,17 +3,18 @@ pollutantmean <- function(directory = "specdata",
                   pollutant = "sulfate", id = 1:332){
         c <- vector()
         for(i in id){
-                if(id < 10){
-                        f_name <- paste("00", id, ".csv", sep = "")
+                if(id[1] < 10){
+                        f_name <- paste("00", i, ".csv", sep = "")
                 }else{
-                        if(id < 100){
-                                f_name <- paste("0", id, ".csv", sep = "") 
+                        if(id[1] < 100){
+                                f_name <- paste("0", i, ".csv", sep = "") 
                         }else{
-                                f_name <- paste(id, ".csv", sep = "") 
+                                f_name <- paste(i, ".csv", sep = "") 
                                }
                 }
                 table <- read.csv(paste(directory, "/", f_name, sep = ""))
                 print(head(table)) # Проверка работы считывания файлов
+                print(id)
                 
        }   
 }
