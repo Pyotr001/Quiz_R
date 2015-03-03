@@ -11,5 +11,7 @@ nrow(table)
 tail(table, 2)
 
 # What is the value of Ozone in the 47th row?
-Ozone$47
+table[47,1] # строка, потом столбец
+table[47,"Ozone"]
+table[[1]][[47]] # столбец, потом строка
 
