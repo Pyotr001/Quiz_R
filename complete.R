@@ -1,5 +1,5 @@
 complete <- function(directory = "specdata", id = 1:332){
-        c <- c()
+        c  <- data.frame(id = NULL, nobs = NULL) 
        
         for(i in id){
                 if(i[1] < 10){
@@ -15,9 +15,9 @@ complete <- function(directory = "specdata", id = 1:332){
                 table <- read.csv(paste(directory, "/", f_name, sep = ""))
                 Check <- sum(!is.na(table$sulfate) & !is.na(table$nitrate))
                 
-                c <- rbind(c, c(i, Check))
+                c <- rbind.data.frame(c, c(i, Check))
         }
-        c=as.data.frame(c) # нужно изменить матрицу на фрейм, чтобы обращаться по именам через знак$
+        # c=as.data.frame(c) # нужно изменить матрицу на фрейм, чтобы обращаться по именам через знак$
         colnames(c) <- c("id", "nobs")
         c
         
