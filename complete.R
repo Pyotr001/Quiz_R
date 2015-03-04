@@ -14,7 +14,7 @@ complete <- function(directory = "specdata", id = 1:332){
                 
                 table <- read.csv(paste(directory, "/", f_name, sep = ""))
                 Check <- sum(!is.na(table$sulfate) & !is.na(table$nitrate))
-                
+                # !!! - надо бы использовать функцию complete.cases
                 c <- rbind.data.frame(c, c(i, Check))
         }
         # c=as.data.frame(c) # нужно изменить матрицу на фрейм, чтобы обращаться по именам через знак$
