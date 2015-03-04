@@ -11,9 +11,10 @@ corr <- function(directory = "specdata", threshold = 0) {
                         }
                 }
                 table <- read.csv(paste(directory, "/", f_name, sep = ""))
-                Check <- sum(!is.na(table$sulfate) & !is.na(table$nitrate))
-                if(Check > threshold){
-                        dataCor <- cor(table$sulfate, table$nitrate, use = "na.or.complete")
+                # Check <- sum(!is.na(table$sulfate) & !is.na(table$nitrate))
+                Check <- !is.na(table$sulfate) & !is.na(table$nitrate)
+                if(sum(Check) > threshold){
+                        dataCor <- cor(table$sulfate[Check], table$nitrate[Check])
                         # print(dataCor)
                         outputVector <- c(outputVector, dataCor)
                         # print(head(table$sulfate))
