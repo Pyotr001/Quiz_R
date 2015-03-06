@@ -6,7 +6,7 @@ best <- function(state = "RI", outcome = "pneumonia") {
 
         ## Check that state and outcome are valid
         if ((sum((unique(table[7]))  == state)) == 0){
-                stop("Не могу найти такой штат")
+                stop("invalid state")
         }
         if (outcome == "pneumonia"){
                 outcome.data <- table[which(table[7] == state), 23]
@@ -17,13 +17,18 @@ best <- function(state = "RI", outcome = "pneumonia") {
                         if(outcome == "heart failure"){
                                 outcome.data <- table[which(table[7] == state), 17]    
                         }else{
-                                stop("нет такого заболевания")
+                                stop("invalid outcome")
                         }
                 }
         }
+        suppressWarnings(outcome.data <- as.numeric(outcome.data))
         min.mortality <- which(outcome.data == min(outcome.data, na.rm = T))
-        hospital.name <- sort(table[min.mortality, 2])
-        ## print(hospital.name)
+        # print(min(outcome.data, na.rm = T))
+        hospital.name_list <- table[which(table[7] == state), 2]
+        # print(min.mortality)
+        hospital.name <- sort(hospital.name_list[min.mortality])
+        # print(sort(table[min.mortality, 2]))
+        # print(hospital.name)
         hospital.name[1]
         
         ## Return hospital name in that state with lowest 30-day death
